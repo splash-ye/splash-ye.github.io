@@ -387,9 +387,12 @@
         <h2>Publications</h2>
         <h3>Conference Proceedings</h3>
         <ol reversed>
-          <li class="publication-item">
+          <li class="collapsible">
             <span class="pub-title">
               ContractGuard: Auditing Semantic Contracts of MCP Tools for Security Violations
+            </span>
+            <span class="pub-links">
+              <a href="papers/ccs26-contractguard.pdf"><img alt="Paper" src="images/file.svg" height="15"></a>
             </span>
             <br>
             <span class="pub-author">
@@ -399,11 +402,38 @@
             In <span class="pub-conf">
               Proceedings of the ACM Conference on Computer and Communications Security (CCS 2026)
             </span>
+            <div class="content">
+              Model Context Protocol (MCP) is rapidly emerging as a standard interface for connecting large language
+              model (LLM) applications to external tools. An MCP tool exposes two semantic views of the same
+              functionality: a developer-provided description that guides the LLM’s tool selection, and an
+              implementation that determines the actual runtime behavior. Security issues arise when these two
+              views diverge, leading to instruction injection, misleading descriptions, malicious code, or unsafe
+              implementations. Existing defenses analyze descriptions or implementations largely in isolation, and
+              thus, fail to address this broader threat space in a unified manner.
+
+              We present ContractGuard, the first security-oriented framework for bidirectional semantic contract
+              auditing of MCP tools. Our observation is that diverse MCP threats can be unified as violations of a
+              semantic contract between a tool’s description and its implementation. ContractGuard combines
+              reachability-aware static analysis with LLM-based cross-view reasoning for auditing. It extracts a
+              tool-specific code slice, generates a code-grounded description, compares it against the
+              developer-provided one, and validates and classifies detected inconsistencies. We evaluate our method
+              on 3,586 MCP tools from 1,000 real-world MCP servers and 5,661 benchmark cases. Our tool uncovers 116
+              security issues in the wild, including 21 misleading descriptions, 29 instances of potentially
+              malicious code, and 66 unsafe implementations. It achieves 96.0% true positive rate on malicious-code
+              benchmarks, and more than 92.8% true positive rate on description-attack benchmarks. Results show that
+              contract auditing can effectively identify security-relevant description–implementation mismatches
+              in MCP tools.
+              <br>
+              <p></p>
+            </div>
           </li>
 
-          <li class="publication-item">
+          <li class="collapsible">
             <span class="pub-title">
               NCFuzz: Configuration-guided Network Service Fuzzing
+            </span>
+            <span class="pub-links">
+              <a href="papers/issta26-ncfuzz.pdf"><img alt="Paper" src="images/file.svg" height="15"></a>
             </span>
             <br>
             <span class="pub-author">
@@ -413,6 +443,28 @@
             In <span class="pub-conf">
               Proceedings of the 35th ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA 2026)
             </span>
+            <div class="content">
+              Network services like FTP and DNS are critical components of modern dependable cyberspace
+              infrastructure. Software fuzzing, especially network protocol fuzzing, is widely used to uncover
+              flaws in these systems. However, conventional fuzzers operate under a single, fixed configuration
+              throughout the fuzzing campaign, leaving the service’s rich configuration space unexplored.
+              Incorporating configurations as a dynamic input dimension is challenging due to complex semantics,
+              trigger conditions, and the resulting enlarged search space.
+
+              We tackle the problem of finding bugs under non-default configurations, termed ConfBug, by designing
+              a new fuzzer called NCFuzz. The non-default configurations can be esoteric but the administrators may
+              enable them, which cannot be exercised by conventional fuzzers. With the assumption of the
+              availability of software documentation that describes configuration options, NCFuzz leverages two
+              key observations: 1) software documentation contains rich information about configurations; 2)
+              interactions between configuration and network messages can be tracked through code instrumentation
+              and data-flow analysis. Using these insights, NCFuzz uses configuration knowledge and
+              configuration-network-message relation to guide the fuzzer towards new software states. The quality
+              and completeness of the documentation will impact the effectiveness of NCFuzz. Evaluations on six
+              network service implementations show NCFuzz achieves higher coverage than baseline fuzzers. Five
+              ConfBug were discovered during fuzzing.
+              <br>
+              <p></p>
+            </div>
           </li>
 
           <li class="collapsible">
@@ -666,6 +718,45 @@
             <span class="pub-conf">
               Black Hat Asia Briefings (Black Hat Asia 2024)
             </span>
+          </li>
+        </ol>
+        <h3>Preprint</h3>
+        <ol reversed>
+          <li class="collapsible">
+            <span class="pub-title">
+              TrustDesc: Preventing Tool Poisoning in LLM Applications via Trusted Description Generation
+            </span>
+            <span class="pub-links">
+              <a href="papers/trustdesc.pdf"><img alt="Paper" src="images/file.svg" height="15"></a>
+            </span>
+            <br>
+            <span class="pub-author">
+              <b>Hengkai Ye</b>, Zhechang Zhang, Jinyuan Jia and Hong Hu
+            </span>
+            <br>
+            <span class="pub-conf">
+              arXiv preprint arXiv:2604.07536, 2026
+            </span>
+            <div class="content">
+              Large language models (LLMs) increasingly rely on external tools to perform time-sensitive tasks and
+              real-world actions. While tool integration expands LLM capabilities, it also introduces a new
+              prompt-injection attack surface: tool poisoning attacks (TPAs). Attackers manipulate tool descriptions
+              by embedding malicious instructions (explicit TPAs) or misleading claims (implicit TPAs) to influence
+              model behavior and tool selection. Existing defenses mainly detect anomalous instructions and remain
+              ineffective against implicit TPAs.
+
+              In this paper, we present TrustDesc, the first framework for preventing tool poisoning by automatically
+              generating trusted tool descriptions from implementations. TrustDesc derives implementation-faithful
+              descriptions through a three-stage pipeline. SliceMin performs reachability-aware static analysis and
+              LLM-guided debloating to extract minimal tool-relevant code slices. DescGen synthesizes descriptions
+              from these slices while mitigating misleading or adversarial code artifacts. DynVer refines
+              descriptions through dynamic verification by executing synthesized tasks and validating behavioral
+              claims. We evaluate TrustDesc on 52 real-world tools across multiple tool ecosystems. Results show
+              that TrustDesc produces accurate tool descriptions that improve task completion rates while
+              mitigating implicit TPAs at their root, with minimal time and monetary overhead.
+              <br>
+              <p></p>
+            </div>
           </li>
         </ol>
       </section>
